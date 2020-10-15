@@ -1,0 +1,45 @@
+cabal-version: 2.4
+name: common-event-format-acos
+version: 0.1.0.0
+synopsis: A10 Networks Advanced Core Operating System
+homepage: https://github.com/layer-3-communications/common-event-format-acos
+bug-reports: https://github.com/layer-3-communications/common-event-format-acos/issues
+license: BSD-3-Clause
+license-file: LICENSE
+author: Andrew Martin
+maintainer: amartin@layer3com.com
+copyright: 2020 Layer 3 Communications
+category: Data
+build-type: Simple
+extra-source-files: CHANGELOG.md
+
+library
+  build-depends:
+    , base >=4.12 && <5
+    , common-event-format
+    , byteslice
+    , bytes-patterns
+    , bytesmith
+    , ip
+    , contiguous
+    , primitive
+  exposed-modules: Cef.Extension.Acos
+  other-modules: Cef.Acos.Patterns
+  hs-source-dirs: src
+  ghc-options: -O2
+  default-language: Haskell2010
+
+test-suite test
+  type: exitcode-stdio-1.0
+  hs-source-dirs: test, common
+  main-is: Main.hs
+  other-modules: Sample
+  build-depends:
+    , base
+    , common-event-format
+    , common-event-format-acos
+    , primitive
+    , byteslice
+    , ip
+  ghc-options: -Wall -O2
+  default-language: Haskell2010
