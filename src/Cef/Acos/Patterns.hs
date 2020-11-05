@@ -13,4 +13,10 @@ makeBytesPatterns
   , "src"
   , "cnt"
   , "act"
+  , "cs1"
+  , "cs1Label"
+  , "cs2"
+  , "cs2Label"
+  , "cs3"
+  , "cs3Label"
   ]
