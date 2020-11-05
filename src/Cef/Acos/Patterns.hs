@@ -13,6 +13,7 @@ makeBytesPatterns
   , "src"
   , "cnt"
   , "act"
+  , "msg"
   , "cs1"
   , "cs1Label"
   , "cs2"

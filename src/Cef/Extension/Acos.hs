@@ -27,6 +27,7 @@ data Field
   | DestinationIp {-# UNPACK #-} !IP
   | DestinationPort {-# UNPACK #-} !Word16
   | Action {-# UNPACK #-} !Bytes
+  | Message {-# UNPACK #-} !Bytes
   | Custom
       {-# UNPACK #-} !Word8 -- ^ Custom field number
       {-# UNPACK #-} !Bytes -- ^ Custom field value
@@ -47,6 +48,8 @@ decodeOne Pair{key,value}
   | Patterns.isDst key = DestinationIp <$> decodeIp value
   | Patterns.isSpt key = SourcePort <$> decodeWord16 value
   | Patterns.isDpt key = DestinationPort <$> decodeWord16 value
+  | Patterns.isAct key = Just $! Action value
+  | Patterns.isMsg key = Just $! Message value
   | Patterns.isCs1 key = Just $! Custom 1 value
   | Patterns.isCs2 key = Just $! Custom 2 value
   | Patterns.isCs3 key = Just $! Custom 3 value
