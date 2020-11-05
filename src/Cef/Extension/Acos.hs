@@ -26,6 +26,7 @@ data Field
   | SourcePort {-# UNPACK #-} !Word16
   | DestinationIp {-# UNPACK #-} !IP
   | DestinationPort {-# UNPACK #-} !Word16
+  | Action {-# UNPACK #-} !Bytes
   deriving (Eq,Show)
 
 -- | Decode a CEF extension, interpreting fields according to ACOS\'s CEF
@@ -40,6 +41,7 @@ decodeOne Pair{key,value}
   | Patterns.isDst key = DestinationIp <$> decodeIp value
   | Patterns.isSpt key = SourcePort <$> decodeWord16 value
   | Patterns.isDpt key = DestinationPort <$> decodeWord16 value
+  | Patterns.isAct key = Just $! Action value
   | otherwise = Nothing
 
 decodeWord64 :: Bytes -> Maybe Word64
